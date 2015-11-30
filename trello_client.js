@@ -1,3 +1,5 @@
+// https://github.com/RobertLowe/meteor-accounts-trello/blob/master/trello_client.js
+// last updated by satya pramodh on nov 30
 Trello = {};
 
 // Request Trello credentials for the user
@@ -34,6 +36,10 @@ Trello.requestCredential = function (options, credentialRequestCompleteCallback)
   var url = '/_oauth/trello/?requestTokenAndRedirect='
         + encodeURIComponent(callbackUrl)
         + '&state=' + OAuth._stateParam(loginStyle, credentialToken);
+
+  if(options.root_url){
+    url += "&root_url=" + encodeURIComponent(options.root_url)
+  }
 
   Oauth.initiateLogin(credentialToken, url, credentialRequestCompleteCallback);
 };
